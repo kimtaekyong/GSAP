@@ -18,6 +18,7 @@
       body {
         height: calc(var(--vh, 1vh) * 100);
         overflow-x: hidden;
+        scroll-behavior: smooth;
       }
 
       /* parallax__cont */
@@ -30,13 +31,16 @@
       }
       .parallax__item__num {
         position: absolute;
-        right: 20px;
-        bottom: 20px;
+        right: 14px;
+        bottom: 14px;
         font-size: 5vw;
         line-height: 1;
         font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
           "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 2px;
       }
       .parallax__item {
         width: 100%;
@@ -123,6 +127,24 @@
       }
 
       setScreenSize();
+    </script>
+    <script>
+      disableScroll = () => {
+        document.querySelector("body").addEventListener("touchmove", this.removeEvent, { passive: false });
+        document.querySelector("body").addEventListener("onclick", this.removeEvent, { passive: false });
+        document.querySelector("body").addEventListener("mousewheel", this.removeEvent, { passive: false });
+      };
+
+      removeEvent = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      };
+
+      enableScroll = () => {
+        document.querySelector("body").removeEventListener("touchmove", this.removeEvent);
+        document.querySelector("body").removeEventListener("onclick", this.removeEvent);
+        document.querySelector("body").removeEventListener("mousewheel", this.removeEvent);
+      };
     </script>
   </body>
 </html>
