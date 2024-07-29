@@ -11,15 +11,22 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
     />
     <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
       body {
-        background-color: #1f1f1f;
-        height: 100vh;
+        height: 100lvh;
         overflow-x: hidden;
       }
 
       /* parallax__cont */
+      #section7 {
+        background-color: #1f1f1f;
+        width: 100%;
+      }
       #parallax__cont {
-        overflow: hidden;
+        overflow-x: hidden;
       }
       .parallax__item__num {
         position: absolute;
@@ -40,7 +47,7 @@
         justify-content: center;
       }
       #section7 .parallax__item__text {
-        font-size: 3.8vw;
+        font-size: 8vw;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -55,22 +62,25 @@
           "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
       }
       #section8 {
-        background: pink;
       }
     </style>
   </head>
   <body>
     <section id="section7" class="parallax__item">
       <span class="parallax__item__num">07</span>
-      <div class="parallax__item__text t1">보람상조</div>
-      <div class="parallax__item__text t2">보람리더스</div>
-      <div class="parallax__item__text t3">어딘가에</div>
-      <div class="parallax__item__text t4">적는 것을 말한다</div>
-      <div class="parallax__item__text t5">코딩은</div>
-      <div class="parallax__item__text t6">누구나</div>
-      <div class="parallax__item__text t7">할 수 있다.</div>
+      <div class="parallax__item__text t1">01</div>
+      <div class="parallax__item__text t2">02</div>
+      <div class="parallax__item__text t3">03</div>
+      <div class="parallax__item__text t4">04</div>
+      <div class="parallax__item__text t5">05</div>
+      <div class="parallax__item__text t6">06</div>
+      <div class="parallax__item__text t7">07</div>
+      <div class="parallax__item__text t8">08</div>
+      <div class="parallax__item__text t9">09</div>
+      <div class="parallax__item__text t10">10</div>
     </section>
     <!-- //section7 -->
+    <section id="section8" class="parallax__item">다음컨텐츠영역입니다.</section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
@@ -83,6 +93,9 @@
         "#section7 .t5",
         "#section7 .t6",
         "#section7 .t7",
+        "#section7 .t8",
+        "#section7 .t9",
+        "#section7 .t10",
       ];
       const ani7 = gsap.timeline();
 
@@ -98,7 +111,7 @@
         end: "+=6000",
         scrub: true,
         pin: true,
-        markers: true,
+        markers: false,
         anticipatePin: 1,
       });
     </script>
