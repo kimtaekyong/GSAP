@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1" />
     <title>GSAP ScrollTrigger Slide Example</title>
     <link
       rel="stylesheet"
@@ -16,7 +16,7 @@
         margin: 0;
       }
       body {
-        height: 100lvh;
+        height: calc(var(--vh, 1vh) * 100);
         overflow-x: hidden;
       }
 
@@ -40,14 +40,14 @@
       }
       .parallax__item {
         width: 100%;
-        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
       }
       #section7 .parallax__item__text {
-        font-size: 8vw;
+        font-size: 50vw;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -68,16 +68,16 @@
   <body>
     <section id="section7" class="parallax__item">
       <span class="parallax__item__num">07</span>
-      <div class="parallax__item__text t1">01</div>
-      <div class="parallax__item__text t2">02</div>
-      <div class="parallax__item__text t3">03</div>
-      <div class="parallax__item__text t4">04</div>
-      <div class="parallax__item__text t5">05</div>
-      <div class="parallax__item__text t6">06</div>
-      <div class="parallax__item__text t7">07</div>
-      <div class="parallax__item__text t8">08</div>
-      <div class="parallax__item__text t9">09</div>
-      <div class="parallax__item__text t10">10</div>
+      <div class="parallax__item__text t1">😄</div>
+      <div class="parallax__item__text t2">😁</div>
+      <div class="parallax__item__text t3">😘</div>
+      <div class="parallax__item__text t4">😱</div>
+      <div class="parallax__item__text t5">🤯</div>
+      <div class="parallax__item__text t6">🥺</div>
+      <div class="parallax__item__text t7">😝</div>
+      <div class="parallax__item__text t8">😴</div>
+      <div class="parallax__item__text t9">😨</div>
+      <div class="parallax__item__text t10">😓</div>
     </section>
     <!-- //section7 -->
     <section id="section8" class="parallax__item">다음컨텐츠영역입니다.</section>
@@ -114,6 +114,15 @@
         markers: false,
         anticipatePin: 1,
       });
+    </script>
+    <script>
+      function setScreenSize() {
+        let vh = window.innerHeight * 0.01;
+
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      }
+
+      setScreenSize();
     </script>
   </body>
 </html>
