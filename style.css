@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li,
+ol {
+  list-style: none;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+p {
+  width: 100%;
+  background-color: #2d2d2d;
+  color: #fff;
+}
+p span {
+  color: blue;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+img {
+  width: 100%;
+  vertical-align: top;
+} /*# sourceMappingURL=style.css.map */
