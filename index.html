@@ -69,7 +69,7 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -30%);
+        transform: translate(-50%, -50%);
         padding: 38px;
         width: 100%;
         color: #fff;
@@ -151,26 +151,31 @@
         "#section7 .t10",
       ];
 
-      // 타임라인 생성
       const ani7 = gsap.timeline();
 
       texts.forEach((text, i) => {
-        // 텍스트 블록 페이드 인/아웃
         ani7.to(text, { autoAlpha: 1, duration: 5 }, `+=${i === 0 ? 1 : 2}`);
-        ani7.fromTo(`${text} h2`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 3 }, `+=0.1`);
-        ani7.fromTo(`${text} p`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 3 }, `+=0.1`);
-
-        // 텍스트 블록 페이드 아웃
+        ani7.fromTo(
+          `${text} h2`,
+          { y: 20, willChange: "opacity, transform" },
+          { y: 0, duration: 3, autoAlpha: 1 },
+          `+=0.1`
+        );
+        ani7.fromTo(
+          `${text} p`,
+          { y: 20, willChange: "opacity, transform" },
+          { y: 0, duration: 3, autoAlpha: 1 },
+          `+=0.1`
+        );
         ani7.to(text, { autoAlpha: 0, duration: 5 }, `+=${i === 0 ? 1 : 2}`);
       });
 
-      // ScrollTrigger 설정
       ScrollTrigger.create({
         animation: ani7,
         trigger: "#section7",
         start: "top top",
-        end: "+=20000",
-        scrub: 3,
+        end: "+=10000", // 줄임
+        scrub: true, // 자연스러운 스크롤
         pin: true,
         markers: false,
         anticipatePin: 1,
