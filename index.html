@@ -18,6 +18,21 @@
           "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
       }
+      h2 {
+        color: #2c2c2c;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -1.25px;
+      }
+      p {
+        color: rgba(81, 81, 81, 0.85);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: -0.55px;
+        margin-top: 8px;
+      }
       body {
         height: calc(var(--vh, 1vh) * 100);
         overflow-x: hidden;
@@ -51,33 +66,63 @@
         justify-content: center;
       }
       #section7 .parallax__item__text {
-        font-size: 50vw;
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
-        padding: 30px;
+        transform: translate(-50%, -30%);
+        padding: 38px;
         width: 100%;
-        text-align: center;
         color: #fff;
         font-weight: 800;
+        background: #fff;
+        max-width: 70%;
+        height: calc(100vh - 30vh);
+        border-radius: 24px;
+        row-gap: 6px;
       }
-      #section8 {
+      #section8,
+      #section6 {
         background-color: #fff;
         width: 100%;
         color: #1f1f1f;
         font-weight: 700;
+        height: 100vh;
         font-size: 18px;
+      }
+      .parallax__item__text {
+        opacity: 0; /* 초기 상태: 숨김 */
+      }
+      .parallax__item__text p,
+      .parallax__item__text h2 {
+        opacity: 0; /* 초기 상태: 숨김 */
+        transform: translateY(20px); /* 아래쪽에서 시작 */
       }
     </style>
   </head>
   <body>
+    <section id="section6" class="parallax__item">이전컨텐츠</section>
     <section id="section7" class="parallax__item">
-      <span class="parallax__item__num">07</span>
-      <div class="parallax__item__text t1">😄</div>
-      <div class="parallax__item__text t2">😁</div>
-      <div class="parallax__item__text t3">😘</div>
-      <div class="parallax__item__text t4">😱</div>
+      <!-- <span class="parallax__item__num">07</span> -->
+      <div class="parallax__item__text t1">
+        <h2>
+          안녕하세요.
+          <br />
+          보람상조 입니다.
+        </h2>
+        <p>전국 어디에서나 동일한 품격 있는 <br />상조서비스를 지원합니다.</p>
+      </div>
+      <div class="parallax__item__text t2">
+        <p>😁</p>
+        <h2>반갑습니다.</h2>
+      </div>
+      <div class="parallax__item__text t3">
+        <p>😘</p>
+        <h2>현재 인터렉션</h2>
+      </div>
+      <div class="parallax__item__text t4">
+        <p>😱</p>
+        <h2>테스트 진행 중 입니다.</h2>
+      </div>
       <div class="parallax__item__text t5">🤯</div>
       <div class="parallax__item__text t6">🥺</div>
       <div class="parallax__item__text t7">😝</div>
@@ -91,6 +136,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
     <script>
+      gsap.registerPlugin(ScrollTrigger);
+
       const texts = [
         "#section7 .t1",
         "#section7 .t2",
@@ -103,19 +150,27 @@
         "#section7 .t9",
         "#section7 .t10",
       ];
+
+      // 타임라인 생성
       const ani7 = gsap.timeline();
 
       texts.forEach((text, i) => {
-        ani7.to(text, { autoAlpha: 0, duration: 1 }, `+=${i === 0 ? 1 : 2}`);
-        ani7.from(texts[i + 1], { autoAlpha: 0, duration: 1, y: 50 }, `+=1`);
+        // 텍스트 블록 페이드 인/아웃
+        ani7.to(text, { autoAlpha: 1, duration: 5 }, `+=${i === 0 ? 1 : 2}`);
+        ani7.fromTo(`${text} h2`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 3 }, `+=0.1`);
+        ani7.fromTo(`${text} p`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 3 }, `+=0.1`);
+
+        // 텍스트 블록 페이드 아웃
+        ani7.to(text, { autoAlpha: 0, duration: 5 }, `+=${i === 0 ? 1 : 2}`);
       });
 
+      // ScrollTrigger 설정
       ScrollTrigger.create({
         animation: ani7,
         trigger: "#section7",
         start: "top top",
-        end: "+=6000",
-        scrub: true,
+        end: "+=20000",
+        scrub: 3,
         pin: true,
         markers: false,
         anticipatePin: 1,
@@ -129,24 +184,6 @@
       }
 
       setScreenSize();
-    </script>
-    <script>
-      disableScroll = () => {
-        document.querySelector("body").addEventListener("touchmove", this.removeEvent, { passive: false });
-        document.querySelector("body").addEventListener("onclick", this.removeEvent, { passive: false });
-        document.querySelector("body").addEventListener("mousewheel", this.removeEvent, { passive: false });
-      };
-
-      removeEvent = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      };
-
-      enableScroll = () => {
-        document.querySelector("body").removeEventListener("touchmove", this.removeEvent);
-        document.querySelector("body").removeEventListener("onclick", this.removeEvent);
-        document.querySelector("body").removeEventListener("mousewheel", this.removeEvent);
-      };
     </script>
   </body>
 </html>
