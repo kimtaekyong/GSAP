@@ -17,7 +17,7 @@
         margin: 0;
         padding: 0;
         background-color: rgba(231, 231, 231, 0.35);
-        overscroll-behavior-y: contain;
+        overscroll-behavior: none;
       }
       header {
         display: flex;
@@ -149,11 +149,9 @@
       // 스와이프 방향 판단: 위로 스와이프 -> 열기, 아래로 스와이프 -> 닫기
       if (touchStartY - touchEndY > 50) {
         // 위로 스와이프 (바텀시트 열기)
-        e.preventDefault();
         openBottomSheet();
       } else if (touchEndY - touchStartY > 50) {
         // 아래로 스와이프 (바텀시트 닫기)
-        e.preventDefault();
         closeBottomSheet();
       }
     });
