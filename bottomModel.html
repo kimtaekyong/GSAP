@@ -141,10 +141,12 @@
       // 스와이프 방향 판단: 위로 스와이프 -> 열기, 아래로 스와이프 -> 닫기
       if (touchStartY - touchEndY > 50) {
         // 위로 스와이프 (바텀시트 열기)
+        event.preventDefault();
         openBottomSheet();
       } else if (touchEndY - touchStartY > 50) {
         // 아래로 스와이프 (바텀시트 닫기)
         closeBottomSheet();
+        event.preventDefault();
       }
     });
   </script>
