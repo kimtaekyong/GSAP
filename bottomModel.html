@@ -17,6 +17,7 @@
         margin: 0;
         padding: 0;
         background-color: rgba(231, 231, 231, 0.35);
+        overscroll-behavior-y: contain;
       }
       header {
         display: flex;
@@ -134,19 +135,26 @@
       touchStartY = e.changedTouches[0].screenY;
     });
 
-    // 터치 종료 시 위치 비교하여 스와이프 동작 처리
+    // 터치 시작 시 위치 저장 및 버블링 방지
+    bottomSheet.addEventListener("touchstart", (e) => {
+      e.stopPropagation(); // 이벤트 버블링 방지
+      touchStartY = e.changedTouches[0].screenY;
+    });
+
+    // 터치 종료 시 위치 비교하여 스와이프 동작 처리 및 버블링 방지
     bottomSheet.addEventListener("touchend", (e) => {
+      e.stopPropagation(); // 이벤트 버블링 방지
       touchEndY = e.changedTouches[0].screenY;
 
       // 스와이프 방향 판단: 위로 스와이프 -> 열기, 아래로 스와이프 -> 닫기
       if (touchStartY - touchEndY > 50) {
         // 위로 스와이프 (바텀시트 열기)
-        event.preventDefault();
+        e.preventDefault();
         openBottomSheet();
       } else if (touchEndY - touchStartY > 50) {
         // 아래로 스와이프 (바텀시트 닫기)
+        e.preventDefault();
         closeBottomSheet();
-        event.preventDefault();
       }
     });
   </script>

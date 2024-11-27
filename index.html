@@ -18,6 +18,9 @@
           "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
       }
+      body {
+        overscroll-behavior-y: contain;
+      }
       h2 {
         color: #2c2c2c;
         font-size: 28px;
@@ -129,8 +132,6 @@
       gsap.registerPlugin(ScrollTrigger);
 
       const texts = ["#section7 .t1", "#section7 .t2", "#section7 .t3"];
-
-      100dvh
 
       const ani7 = gsap.timeline();
 
